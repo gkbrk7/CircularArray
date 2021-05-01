@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 
 namespace CircularArrayImplementation.DataStructures
@@ -27,13 +28,15 @@ namespace CircularArrayImplementation.DataStructures
 
         /// <summary>
         /// Prints all n element (in order) starting from the given index
-        /// /// </summary>
+        /// It works very well with primitive data types. It also works with objects but you cannot see their properties you can only see as an object output
+        /// </summary>
         /// <param name="index"></param>
-        public void ListByIndex(int index)
+        [ObsoleteAttribute("This method is reserved just only for testing purposes.", true)]
+        public void SortByIndex(int index)
         {
             for (int i = index; i < _array.Length + index; i++)
             {
-                System.Console.Write("{0} ", _array[i % _array.Length]);
+                System.Console.Write(_array[i % _array.Length] + " ");
             }
         }
 

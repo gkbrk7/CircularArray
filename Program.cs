@@ -7,41 +7,37 @@ namespace CircularArrayImplementation
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            CircularArray<string> circularArray = new CircularArray<string>();
-            circularArray.AddRange(new string[] { "1", "2", "3", "4" });
-            circularArray.AddRange(new string[] { "5", "6" });
-            circularArray.AddItem("7");
+            CircularArray<Test> circularArray = new CircularArray<Test>();
 
-            foreach (var item in circularArray)
+            // Start from here to use circularArray
+            Test test = new Test
             {
-                System.Console.Write(item + " ");
-            }
-            System.Console.WriteLine();
-            //circularArray.ListByIndex(1);
-            circularArray.ReversalRotate(2);
-
-            // System.Console.WriteLine(circularArray.Length);
-            foreach (var item in circularArray)
+                Id = 1,
+                Name = "Test1"
+            };
+            Test test1 = new Test
             {
-                System.Console.Write(item + " ");
+                Id = 2,
+                Name = "Test2"
+            };
+            Test test2 = new Test
+            {
+                Id = 3,
+                Name = "Test3"
+            };
+
+            circularArray.AddRange(new Test[] { test, test1, test2 });
+
+            //circularArray.ReversalRotate(2);
+            foreach (Test item in circularArray)
+            {
+                System.Console.WriteLine(item.Name);
             }
 
-            // circularArray.LeftRotate(1);
-            // System.Console.WriteLine();
-
-            // foreach (var item in circularArray)
-            // {
-            //     System.Console.Write(item + " ");
-            // }
-
-            // circularArray.RightRotate(1);
-            // System.Console.WriteLine();
-
-            // foreach (var item in circularArray)
-            // {
-            //     System.Console.Write(item + " ");
-            // }
+            for (int i = 0; i < circularArray.Length; i++)
+            {
+                System.Console.WriteLine(circularArray[i].Name);
+            }
         }
     }
 }
