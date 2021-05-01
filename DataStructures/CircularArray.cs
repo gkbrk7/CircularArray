@@ -8,7 +8,6 @@ namespace CircularArrayImplementation.DataStructures
         private T[] _array;
         private T[] _tempArray;
         private int Position = -1;
-
         public CircularArray()
         {
             _array = new T[0];
@@ -55,7 +54,7 @@ namespace CircularArrayImplementation.DataStructures
             _array[_array.Length - 1] = item;
         }
 
-        public void AddRange(T[] items)
+        public void AddRange(params T[] items)
         {
             _tempArray = _array;
             _array = new T[_array.Length + items.Length];
@@ -116,6 +115,7 @@ namespace CircularArrayImplementation.DataStructures
 
         /// <summary>
         /// Perform left rotation of array by specific count
+        /// This algorithm provides O(n * count) time complexity and auxiliary space complexity O(d) where storing the first d elements in a temp array. 
         /// </summary>
         /// <param name="count">Specify the position to shift each element by count</param>
         public void LeftRotate(int count)
@@ -134,6 +134,7 @@ namespace CircularArrayImplementation.DataStructures
 
         /// <summary>
         /// Perform right rotation of array by specific count
+        /// This algorithm provides O(n * count) time complexity and auxiliary space complexity O(d) where storing the first d elements in a temp array. In this case auxiliary space complexity is O(1)
         /// </summary>
         /// <param name="count">Specify the position to shift each element by count</param>
         public void RightRotate(int count)
@@ -152,7 +153,7 @@ namespace CircularArrayImplementation.DataStructures
 
         /// <summary>
         /// Reversal Algorithm for efficient rotation of an array. Specify the count to rotate each element in the array.
-        /// This algorithm provides O(n) time complexity and no extra space complexity.
+        /// This algorithm provides O(n) time complexity and auxiliary space complexity O(1).
         /// Assume array rotation direction is right.
         /// </summary>
         public void ReversalRotate(int count)
@@ -177,6 +178,42 @@ namespace CircularArrayImplementation.DataStructures
                 _array[i] = _array[_array.Length - 1 - i];
                 _array[_array.Length - 1 - i] = temp;
             }
+        }
+
+        /// <summary>
+        /// This algorithm extends one by one rotation by dividing array into sub-arrays with respect to greatest common divisor of rotation count and the number of elements inside the array. 
+        /// This algorithm provides O(n) time complexity and auxiliary space complexity O(1).
+        /// Assume array rotation direction is left.
+        /// </summary>
+        public void JugglingRotate(int count)
+        {
+            int j, k;
+            int gcd = GCD(_array.Length, count);
+            T temp;
+            for (int i = 0; i < gcd; i++)
+            {
+                temp = _array[i];
+                j = i;
+                while (true)
+                {
+                    k = j + count;
+                    if (k >= _array.Length)
+                        k = k - _array.Length;
+                    if (k == i)
+                        break;
+                    _array[j] = _array[k];
+                    j = k;
+                }
+                _array[j] = temp;
+            }
+        }
+
+        private int GCD(int length, int count)
+        {
+            if (count == 0)
+                return length;
+            else
+                return GCD(count, length % count);
         }
 
         public int Length => _array.Length;

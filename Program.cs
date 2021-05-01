@@ -7,37 +7,33 @@ namespace CircularArrayImplementation
     {
         static void Main(string[] args)
         {
-            CircularArray<Test> circularArray = new CircularArray<Test>();
+            CircularArray<int> circularArray = new CircularArray<int>();
 
             // Start from here to use circularArray
-            Test test = new Test
-            {
-                Id = 1,
-                Name = "Test1"
-            };
-            Test test1 = new Test
-            {
-                Id = 2,
-                Name = "Test2"
-            };
-            Test test2 = new Test
-            {
-                Id = 3,
-                Name = "Test3"
-            };
+            // Test test = new Test
+            // {
+            //     Id = 1,
+            //     Name = "Test1"
+            // };
+            // Test test1 = new Test
+            // {
+            //     Id = 2,
+            //     Name = "Test2"
+            // };
+            // Test test2 = new Test
+            // {
+            //     Id = 3,
+            //     Name = "Test3"
+            // };
 
-            circularArray.AddRange(new Test[] { test, test1, test2 });
+            circularArray.AddRange(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
 
-            //circularArray.ReversalRotate(2);
-            foreach (Test item in circularArray)
+            circularArray.JugglingRotate(3);
+            foreach (int item in circularArray)
             {
-                System.Console.WriteLine(item.Name);
+                System.Console.Write(item + " ");
             }
 
-            for (int i = 0; i < circularArray.Length; i++)
-            {
-                System.Console.WriteLine(circularArray[i].Name);
-            }
         }
     }
 }
