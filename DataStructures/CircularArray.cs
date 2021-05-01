@@ -79,6 +79,8 @@ namespace CircularArrayImplementation.DataStructures
         {
             try
             {
+                // Guarantee that the index is inside the array length
+                index = index % _array.Length;
                 _tempArray = _array;
                 _array = new T[_array.Length - 1];
                 int j = 0;
@@ -95,7 +97,7 @@ namespace CircularArrayImplementation.DataStructures
                     }
                 }
             }
-            catch (IndexOutOfRangeException ex)
+            catch (Exception ex)
             {
                 System.Console.WriteLine(ex.Message);
             }
