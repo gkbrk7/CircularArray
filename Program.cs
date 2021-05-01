@@ -29,6 +29,7 @@ namespace CircularArrayImplementation
             circularArray.AddRange(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
 
             circularArray.JugglingRotate(3);
+
             foreach (int item in circularArray)
             {
                 System.Console.Write(item + " ");

@@ -12,13 +12,15 @@ namespace CircularArrayImplementation.DataStructures
         {
             _array = new T[0];
         }
-        public CircularArray(int length)
-        {
-            if (length > 0)
-                _array = new T[length];
-            else
-                _array = new T[0];
-        }
+
+        // Additional Length Definition for Array
+        // public CircularArray(int length)
+        // {
+        //     if (length > 0)
+        //         _array = new T[length];
+        //     else
+        //         _array = new T[0];
+        // }
         public T this[int index]
         {
             get { return _array[index]; }
