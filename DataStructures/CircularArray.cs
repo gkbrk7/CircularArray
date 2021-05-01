@@ -23,8 +23,8 @@ namespace CircularArrayImplementation.DataStructures
         // }
         public T this[int index]
         {
-            get { return _array[index]; }
-            set { _array[index] = value; }
+            get { return _array[index % _array.Length]; }
+            set { _array[index % _array.Length] = value; }
         }
 
         /// <summary>
@@ -77,21 +77,29 @@ namespace CircularArrayImplementation.DataStructures
         /// <param name="index"></param>
         public void RemoveItem(int index)
         {
-            _tempArray = _array;
-            _array = new T[_array.Length - 1];
-            int j = 0;
-            for (int i = 0; i < _tempArray.Length; i++)
+            try
             {
-                if (i == index)
+                _tempArray = _array;
+                _array = new T[_array.Length - 1];
+                int j = 0;
+                for (int i = 0; i < _tempArray.Length; i++)
                 {
-                    continue;
-                }
-                else
-                {
-                    _array[j] = _tempArray[i];
-                    j++;
+                    if (i == index)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        _array[j] = _tempArray[i];
+                        j++;
+                    }
                 }
             }
+            catch (IndexOutOfRangeException ex)
+            {
+                System.Console.WriteLine(ex.Message);
+            }
+
         }
 
         public bool MoveNext()
